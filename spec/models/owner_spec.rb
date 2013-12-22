@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe Owner do
+
+  let(:owner) { FactoryGirl.create(:owner) }
+
+  it "have name and email address" do
+    expect(owner[:first_name]).to eq("kevin")
+    expect(owner[:last_name]).to eq("lee")
+    expect(owner[:email_address]).to eq("kl@yahoo.com")
+  end
+
   it { should have_valid(:first_name).when('john', 'pau') }
   it { should_not have_valid(:first_name).when('', nil) }
 
@@ -12,5 +21,5 @@ describe Owner do
 
   it { should have_many :dogs }
   it { should have_many(:dogs).through(:ownerships) }
-end
 
+end
